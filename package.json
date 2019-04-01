@@ -1,0 +1,35 @@
+{
+  "name": "@gendronb/fastify-named-routes",
+  "version": "0.5.0",
+  "description": "Named routes support for Fastify",
+  "main": "index.js",
+  "scripts": {
+    "test:lint": "standard",
+    "test:unit": "tap -J test/*.test.js test/**/*.test.js",
+    "test": "npm run test:lint && npm run test:unit"
+  },
+  "precommit": "test",
+  "author": "Bruno Gendron <bruno.gendron.consult@gmail.com>",
+  "license": "ISC",
+  "keywords": [
+    "fastify",
+    "routing",
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gendronb/fastify-named-routes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gendronb/fastify-named-routes/issues"
+  },
+  "homepage": "https://github.com/gendronb/fastify-named-routes#readme",
+  "dependencies": {
+    "fastify-plugin": "^1.5.0"
+  },
+  "devDependencies": {
+    "fastify": "^2.1.0",
+    "standard": "^12.0.1",
+    "tap": "^12.6.1"
+  }
+}
