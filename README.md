@@ -1,5 +1,7 @@
 # fastify-named-routes
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 This package adds support for named routes support to Fastify
 
 ## Install
