@@ -3,8 +3,7 @@
 const fp = require('fastify-plugin')
 
 class NamedRoutes {
-  constructor ({ baseUrl }) {
-    this.baseUrl = baseUrl || null
+  constructor () {
     this.routesMap = new Map([])
   }
 
@@ -23,9 +22,9 @@ const namedRoutesPlugin = async function (fastify, opts) {
       let { routeName } = routeOptions.config
 
       if (instance.routesMap.has(routeName)) {
-        console.warn(`Named route ${routeName} already present, skipping...`)
+        fastify.log.warn(`Named route ${routeName} already present, skipping...`)
       } else {
-        console.info(`Adding named route => ${routeName}`)
+        fastify.log.info(`Adding named route => ${routeName}`)
         instance.routesMap.set(routeName, routeOptions)
       }
     }
