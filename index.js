@@ -1,6 +1,7 @@
 'use strict'
 
 const fp = require('fastify-plugin')
+const Map = require('es6-map')
 
 class NamedRoutes {
   constructor () {

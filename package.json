@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/gendronb/fastify-named-routes#readme",
   "dependencies": {
+    "es6-map": "^0.1.5",
     "fastify-plugin": "^1.5.0"
   },
   "devDependencies": {
