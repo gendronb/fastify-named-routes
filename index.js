@@ -13,7 +13,7 @@ class NamedRoutes {
   }
 }
 
-const namedRoutesPlugin = async function (fastify, opts) {
+const namedRoutesPlugin = function (fastify, opts, next) {
   let instance = new NamedRoutes({
     baseUrl: opts.baseUrl
   })
@@ -32,6 +32,7 @@ const namedRoutesPlugin = async function (fastify, opts) {
   })
 
   fastify.decorate('namedRoutes', instance)
+  next()
 }
 
 module.exports = fp(namedRoutesPlugin, {
