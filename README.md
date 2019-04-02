@@ -1,8 +1,9 @@
 # fastify-named-routes
 
-[![npm](https://img.shields.io/npm/v/@gendronb/fastify-named-routes.svg?color=yellowgreen)](https://www.npmjs.com/package/@gendronb/fastify-named-routes)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-yellowgreen.svg)](https://standardjs.com)
-[![Known Vulnerabilpo](https://img.shields.io/snyk/vulnerabilities/github/gendronb/fastify-named-routes.svg?color=yellowgreen)](https://snyk.io/test/github/gendronb/fastify-named-routes)
+[![npm](https://img.shields.io/npm/v/@gendronb/fastify-named-routes.svg?color=green)](https://www.npmjs.com/package/@gendronb/fastify-named-routes)
+[![Build Status](https://travis-ci.com/gendronb/fastify-named-routes.svg?branch=master)](https://travis-ci.com/gendronb/fastify-named-routes)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-green.svg)](https://standardjs.com)
+[![Known Vulnerabilpo](https://img.shields.io/snyk/vulnerabilities/github/gendronb/fastify-named-routes.svg?color=green)](https://snyk.io/test/github/gendronb/fastify-named-routes)
 
 This package brings support for named routes to Fastify.
 
