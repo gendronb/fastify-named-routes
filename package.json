@@ -1,6 +1,6 @@
 {
   "name": "@gendronb/fastify-named-routes",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Named routes support for Fastify",
   "main": "index.js",
   "scripts": {
