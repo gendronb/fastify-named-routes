@@ -26,7 +26,7 @@ test('does not overwrite previous named routes', t => {
   })
 
   fastify.listen(0, function () {
-    // The first route was not overwritten by the second ones
+    // The first route was not overwritten by the second one
     t.equal(fastify.namedRoutes.get('duplicate').path, '/request1')
     fastify.server.unref()
   })

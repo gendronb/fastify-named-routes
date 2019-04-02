@@ -21,16 +21,20 @@ test('does not support encapsulation', t => {
     reply.send('request1')
   })
 
-  fastify.register(plugin, { prefix: 'api' })
-
-  fastify.get('/request2', { prefix: '/api', config: { routeName: 'duplicate' } }, function (req, reply) {
-    reply.send('request2')
-  })
+  fastify.register(function (fastify, opts, next) {
+    fastify
+      .register(plugin)
+      .after(err => {
+        if (err) { console.log(err) }
+        fastify.get('/request2', { config: { routeName: 'duplicate' } }, function (req, reply) {
+          reply.send('request2')
+        })
+      })
+    next()
+  }, { prefix: '/api' })
 
   fastify.listen(0, function () {
-    // The first route was not overwritten by the second ones
     t.equal(fastify.namedRoutes.get('duplicate').path, '/request1')
-    console.debug(fastify.namedRoutes.get('duplicate'))
     fastify.server.unref()
   })
 })
