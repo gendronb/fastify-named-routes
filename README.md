@@ -7,7 +7,15 @@
 
 This package brings support for named routes to Fastify.
 
-Being able to retrieve route options (`path` in particular) by name can be useful for generating URLs (for emails for example) or redirects (eg. Location header).
+Being able to retrieve route options (`path` and `url` in particular) by name can be useful for generating URLs (for emails for example) or redirects (eg. Location header).
+
+## What it does, and how
+
+This plugin creates a global (app-side) map of routes (route options to be more precise), keyed by user-defined names.
+
+To do so, it simply registers an `onRoute` hook that will add any route having a `routeName` key (under the route options' `config` key) to the routes map. Only routes with `{ config: { routeName: value } }` will be added to the routes map.
+
+The plugin is attached to Fastify under a `namedRoutes` property. To retrieve route options for any previously added "named route", simply use the `get` method on the plugin, with a single argument, the `routeName` that was used when the route was registered, like this : `fastify.namedRoutes.get('my-route-name')`
 
 ## Install
 ```
@@ -64,12 +72,6 @@ fastify.post('/create', function (req, reply) {
   // If newEntity.id is 1, the location header will be : 'Location: /get/1'
 })
 ```
-
-## How it works
-
-This plugin simply registers a global (app-wide) `onRoute` hook.
-
-The hook will add any route having a `routeName` key (under the route options' `config` key) to a global routes map. Only routes with that specific key will be added to the routes map. 
 
 ## Encapsulation and duplicate route name
 
