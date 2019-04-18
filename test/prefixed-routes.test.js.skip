@@ -1,0 +1,37 @@
+'use strict'
+
+const test = require('tap').test
+
+const plugin = require('..')
+
+const Fastify = require('fastify')
+
+test('does support prefixed routes', t => {
+  t.plan(1)
+
+  const fastify = Fastify({
+    logger: {
+      level: 'info'
+    }
+  })
+
+  fastify.addHook('onRoute', async function (routeOptions) {
+    // console.debug(!routeOptions.prefixTrailingSlash || routeOptions.prefixTrailingSlash == 'both')
+    console.debug('onRoute', routeOptions)
+  })
+
+  fastify.register(plugin)
+
+  const route = async function (fastify, opts) {
+    fastify.get('/', { config: { routeName: 'prefixed' } }, async () => 'Test')
+  }
+
+  fastify.register(route, { prefix: '/prefix' })
+
+  fastify.listen(0, function () {
+    console.debug(fastify.namedRoutes.get('prefixed'))
+    t.equal(fastify.namedRoutes.get('prefixed').path, '/prefix')
+    // t.equal('toto', 'titi')
+    fastify.server.unref()
+  })
+})

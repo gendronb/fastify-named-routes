@@ -1,11 +1,11 @@
 {
   "name": "@gendronb/fastify-named-routes",
-  "version": "0.6.0",
+  "version": "0.8.0",
   "description": "Named routes support for Fastify",
   "main": "index.js",
   "scripts": {
     "test:lint": "standard",
-    "test:unit": "tap -J test/**/*.test.js",
+    "test:unit": "tap -J test/**/*.test.js --100",
     "test": "npm run test:lint && npm run test:unit"
   },
   "precommit": "test",

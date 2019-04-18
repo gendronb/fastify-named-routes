@@ -14,24 +14,32 @@ class NamedRoutes {
 }
 
 const namedRoutesPlugin = function (fastify, opts, next) {
-  let instance = new NamedRoutes({
+  let plugin = new NamedRoutes({
     baseUrl: opts.baseUrl
   })
+
+  fastify.decorate('namedRoutes', plugin)
 
   fastify.addHook('onRoute', (routeOptions) => {
     if (routeOptions.config && routeOptions.config.routeName) {
       let { routeName } = routeOptions.config
 
-      if (instance.routesMap.has(routeName)) {
-        fastify.log.warn(`Named route ${routeName} already present, skipping...`)
+      if (plugin.routesMap.has(routeName)) {
+        // let existingRoute = plugin.routesMap.get(routeName)
+        // onRoute hook is called twice for normal route prefix or when prefixTrailingSlash = 'both',
+        // so we should complain ONLY if this is not the case
+        // if (!existingRoute.config || !existingRoute.config.url) {
+        fastify.log.warn(`Named route '${routeName}' already present, skipping...`)
+        // }
       } else {
-        fastify.log.info(`Adding named route => ${routeName}`)
-        instance.routesMap.set(routeName, routeOptions)
+        fastify.log.info(`Adding named route '${routeName}'`)
+        console.debug(routeOptions)
+        plugin.routesMap.set(routeName, routeOptions)
+        console.debug(plugin.routesMap)
       }
     }
   })
 
-  fastify.decorate('namedRoutes', instance)
   next()
 }
 
